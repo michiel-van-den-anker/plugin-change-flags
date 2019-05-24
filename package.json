@@ -1,5 +1,5 @@
 {
-  "name": "@vuex-orm/plugin-change-flags",
+  "name": "@michielvdanker/plugin-change-flags",
   "version": "1.2.0",
   "description": "Vuex ORM plugin adding IsDirty / IsNew flags to model entities",
   "author": "Thomas Villaren",
@@ -59,7 +59,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vuex-orm/plugin-change-flags.git"
+    "url": "git+https://github.com/michiel-van-den-anker/plugin-change-flags"
   },
   "keywords": [
     "ORM",
@@ -72,7 +72,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/vuex-orm/plugin-change-flags/issues"
+    "url": "https://github.com/michiel-van-den-anker/plugin-change-flags/issues"
   },
-  "homepage": "https://github.com/vuex-orm/plugin-change-flags#readme"
+  "homepage": "https://github.com/michiel-van-den-anker/plugin-change-flags#readme"
 }
