@@ -1,6 +1,7 @@
 const defaultOptions = {
     isDirtyFlagName: '$isDirty',
     isNewFlagName: '$isNew',
+    resetDirtyFlagName: '$resetDirty',
     exposeFlagsExternally: true
 };
 
@@ -92,6 +93,10 @@ export default {
         // Overwriting to add preventDirtyFlag option
         const _insertOrUpdate = RootMutations.insertOrUpdate;
         RootMutations.insertOrUpdate = function (state, payload) {
+            if (payload.data[pluginOptions.resetDirtyFlagName] === true) {
+                payload.data[pluginOptions.isDirtyFlagName] = false
+                payload.preventDirtyFlag = true
+            }
             if (payload.preventDirtyFlag === true) {
                 _ignoreIsDirtyFlag = true;
                 _insertOrUpdate.call(this, state, payload);
@@ -103,6 +108,10 @@ export default {
         // Overwriting to add preventDirtyFlag option
         const _update = RootMutations.update;
         RootMutations.update = function (state, payload) {
+            if (payload.data[pluginOptions.resetDirtyFlagName] === true) {
+                payload.data[pluginOptions.isDirtyFlagName] = false
+                payload.preventDirtyFlag = true
+            }
             if (payload.preventDirtyFlag === true) {
                 _ignoreIsDirtyFlag = true;
                 _update.call(this, state, payload);

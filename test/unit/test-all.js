@@ -83,6 +83,47 @@ describe('Vuex ORM $isDirty/$isNew plugin default installation', function () {
         expect(result.$isDirty).to.equal(true);
     });
 
+    it('should reset $isDirty flag to false when updating with flag $resetDirty set to true in the payload data', function () {
+        const store = createStore([{
+            model: User
+        }]);
+
+        // Creating using the constructor, not the factory
+        // to make sure $isDirty / $isNew are false
+        let user = new User({
+            id: 1
+        });
+
+        // Inserting new data
+        User.insert({
+            data: user
+        });
+        expect(user.$isDirty).to.equal(false);
+
+        // Updating
+        user.email = 'AA';
+        User.update({
+            data: user
+        });
+
+        // Checking
+        let result1 = store.getters['entities/users/find'](1);
+
+        expect(result1.$isDirty).to.equal(true);
+
+        // Updating
+        user.email = 'BB';
+        user.$resetDirty = true;
+        User.update({
+            data: user
+        });
+
+        // Checking
+        let result2 = store.getters['entities/users/find'](1);
+
+        expect(result2.$isDirty).to.equal(false);
+    });
+
     it('should provide a way to fetch all dirty entities in one call', function () {
         const store = createStore([{
             model: User
