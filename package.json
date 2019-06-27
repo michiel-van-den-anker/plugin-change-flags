@@ -27,7 +27,7 @@
   },
   "dependencies": {},
   "scripts": {
-    "build": "webpack",
+    "build": "babel src -d .transpiled -s && webpack --mode=production",
     "test": "cross-env NODE_ENV=test mocha --require babel-register --require babel-polyfill \"test/unit/**/*.js\"",
     "cover": "cross-env NODE_ENV=test nyc mocha --require babel-register --require babel-polyfill \"test/unit/**/*.js\"",
     "transpile": "babel src -d .transpiled -s"

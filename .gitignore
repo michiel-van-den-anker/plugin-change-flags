@@ -4,3 +4,4 @@ Thumbs.db
 .nyc_output
 test/coverage/
 .vs
+.transpiled/
